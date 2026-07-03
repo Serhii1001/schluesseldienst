@@ -1,75 +1,79 @@
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+// Летающие частицы
+const particlesBox = document.getElementById("particles");
 
-let particles = [];
+for (let i = 0; i < 55; i++) {
+  const particle = document.createElement("span");
+  particle.className = "particle";
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  particle.style.left = Math.random() * 100 + "%";
+  particle.style.animationDuration = 5 + Math.random() * 8 + "s";
+  particle.style.animationDelay = Math.random() * 6 + "s";
+  particle.style.opacity = 0.25 + Math.random() * 0.7;
+
+  particlesBox.appendChild(particle);
 }
 
-function createParticles() {
-  particles = [];
-
-  const count = window.innerWidth < 768 ? 45 : 85;
-
-  for (let i = 0; i < count; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 0.6,
-      speedX: (Math.random() - 0.5) * 0.25,
-      speedY: (Math.random() - 0.5) * 0.25,
-      alpha: Math.random() * 0.7 + 0.15
+// Плавное появление блоков при скролле
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
     });
-  }
-}
+  },
+  { threshold: 0.15 }
+);
 
-function drawParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  particles.forEach((p) => {
-    p.x += p.speedX;
-    p.y += p.speedY;
-
-    if (p.x < 0) p.x = canvas.width;
-    if (p.x > canvas.width) p.x = 0;
-    if (p.y < 0) p.y = canvas.height;
-    if (p.y > canvas.height) p.y = 0;
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(0, 234, 255, ${p.alpha})`;
-    ctx.shadowBlur = 12;
-    ctx.shadowColor = "rgba(0, 234, 255, 0.9)";
-    ctx.fill();
-  });
-
-  requestAnimationFrame(drawParticles);
-}
-
-resizeCanvas();
-createParticles();
-drawParticles();
-
-window.addEventListener("resize", () => {
-  resizeCanvas();
-  createParticles();
+document.querySelectorAll(".card, .price-box div, .area-box, .faq button").forEach((el) => {
+  el.classList.add("reveal");
+  observer.observe(el);
 });
 
-const glassCard = document.querySelector(".glass-card");
+// FAQ: открытие ответов
+const answers = {
+  "Wie schnell sind Sie vor Ort?":
+    "In der Regel hängt die Anfahrtszeit von Ihrem Standort und der aktuellen Auslastung ab. In Pfarrkirchen und Umgebung versuchen wir schnellstmöglich vor Ort zu sein.",
+  "Was kostet eine Türöffnung?":
+    "Der Preis hängt von Uhrzeit, Entfernung und Aufwand ab. Vor Beginn nennen wir Ihnen immer eine transparente Einschätzung.",
+  "Öffnen Sie jede Tür?":
+    "Wir prüfen die Situation vor Ort. Eine Öffnung erfolgt nur, wenn Sie berechtigt sind und die Öffnung technisch möglich ist.",
+  "Kann ich per Karte bezahlen?":
+    "Barzahlung ist möglich. Kartenzahlung kann später ergänzt werden."
+};
 
-document.addEventListener("mousemove", (event) => {
-  if (!glassCard || window.innerWidth < 980) return;
+document.querySelectorAll(".faq button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const text = button.textContent.replace("+", "").trim();
 
-  const x = (event.clientX / window.innerWidth - 0.5) * 14;
-  const y = (event.clientY / window.innerHeight - 0.5) * -14;
+    const existing = button.nextElementSibling;
+    if (existing && existing.classList.contains("faq-answer")) {
+      existing.remove();
+      return;
+    }
 
-  glassCard.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    document.querySelectorAll(".faq-answer").forEach((el) => el.remove());
+
+    const answer = document.createElement("div");
+    answer.className = "faq-answer";
+    answer.textContent = answers[text] || "Weitere Informationen erhalten Sie telefonisch.";
+
+    button.insertAdjacentElement("afterend", answer);
+  });
+});
+
+// Мягкое движение замка от мышки на ПК
+const lockScene = document.querySelector(".lock-scene");
+
+document.addEventListener("mousemove", (e) => {
+  if (window.innerWidth < 900 || !lockScene) return;
+
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+  lockScene.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
 });
 
 document.addEventListener("mouseleave", () => {
-  if (!glassCard) return;
-
-  glassCard.style.transform = "";
+  if (lockScene) lockScene.style.transform = "rotateY(0deg) rotateX(0deg)";
 });
