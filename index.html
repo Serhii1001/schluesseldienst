@@ -3,980 +3,157 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Schlüsselnotdienst Pfarrkirchen | Türöffnung & Autoöffnung</title>
   <meta name="description" content="Schlüsselnotdienst in Pfarrkirchen und Umgebung. Türöffnung, Autoöffnung, Schlosswechsel. Schnell, seriös und transparent." />
 
-  <style>
-    :root {
-      --bg: #05070d;
-      --bg2: #0b1020;
-      --card: rgba(255, 255, 255, 0.07);
-      --card2: rgba(255, 255, 255, 0.11);
-      --text: #ffffff;
-      --muted: #aab4c4;
-      --accent: #00f5ff;
-      --accent2: #7c5cff;
-      --green: #37ff9b;
-      --danger: #ff4c60;
-      --radius: 22px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: radial-gradient(circle at 20% 10%, rgba(0, 245, 255, 0.16), transparent 28%),
-                  radial-gradient(circle at 80% 20%, rgba(124, 92, 255, 0.18), transparent 30%),
-                  linear-gradient(180deg, #05070d 0%, #0b1020 55%, #05070d 100%);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.05;
-      z-index: 1;
-      background-image: radial-gradient(#fff 1px, transparent 1px);
-      background-size: 22px 22px;
-    }
-
-    .glow {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 245, 255, 0.22), transparent 65%);
-      filter: blur(10px);
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-      z-index: 0;
-      animation: floatGlow 8s ease-in-out infinite;
-    }
-
-    @keyframes floatGlow {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(35px); }
-    }
-
-    .wrap {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(5, 7, 13, 0.7);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .nav {
-      height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      letter-spacing: 0.3px;
-    }
-
-    .brand-icon {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: linear-gradient(145deg, rgba(0, 245, 255, 0.18), rgba(124, 92, 255, 0.18));
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 0 24px rgba(0, 245, 255, 0.18);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .nav-links a:hover {
-      color: #fff;
-    }
-
-    .phone-btn {
-      padding: 12px 18px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #06101d;
-      font-weight: 900;
-      box-shadow: 0 12px 30px rgba(0, 245, 255, 0.24);
-    }
-
-    .hero {
-      min-height: calc(100vh - 76px);
-      display: grid;
-      align-items: center;
-      padding: 72px 0 52px;
-      position: relative;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 44px;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #dfe9ff;
-      margin-bottom: 22px;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    .badge span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 16px var(--green);
-    }
-
-    h1 {
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: 0.95;
-      margin: 0 0 22px;
-      letter-spacing: -2.8px;
-      animation: fadeUp 0.9s ease both 0.1s;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #fff, #9ffaff 45%, #b7a8ff 75%, #fff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero p {
-      font-size: clamp(17px, 2.1vw, 22px);
-      line-height: 1.55;
-      color: var(--muted);
-      max-width: 640px;
-      margin: 0 0 28px;
-      animation: fadeUp 1s ease both 0.2s;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      animation: fadeUp 1.1s ease both 0.3s;
-    }
-
-    .btn {
-      padding: 15px 22px;
-      border-radius: 999px;
-      font-weight: 900;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: 0.25s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #06101d;
-      box-shadow: 0 18px 42px rgba(0, 245, 255, 0.22);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.07);
-      color: #fff;
-      backdrop-filter: blur(10px);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .hero-note {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-      color: #cdd7e8;
-      font-size: 14px;
-      animation: fadeUp 1.2s ease both 0.4s;
-    }
-
-    .hero-note div {
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.09);
-    }
-
-    .lock-scene {
-      position: relative;
-      height: 520px;
-      display: grid;
-      place-items: center;
-      perspective: 1000px;
-      animation: fadeIn 1.2s ease both 0.3s;
-    }
-
-    .orbital {
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      border: 1px solid rgba(0, 245, 255, 0.16);
-      animation: rotate 18s linear infinite;
-    }
-
-    .orbital::before,
-    .orbital::after {
-      content: "";
-      position: absolute;
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 22px var(--accent);
-    }
-
-    .orbital::before {
-      top: 38px;
-      left: 70px;
-    }
-
-    .orbital::after {
-      right: 40px;
-      bottom: 80px;
-      background: var(--accent2);
-      box-shadow: 0 0 22px var(--accent2);
-    }
-
-    @keyframes rotate {
-      to { transform: rotate(360deg); }
-    }
-
-    .lock-card {
-      width: min(360px, 86vw);
-      aspect-ratio: 0.78;
-      border-radius: 34px;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04));
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45), inset 0 0 40px rgba(255, 255, 255, 0.04);
-      position: relative;
-      transform-style: preserve-3d;
-      animation: lockFloat 5s ease-in-out infinite;
-      overflow: hidden;
-    }
-
-    .lock-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: conic-gradient(from 180deg, transparent, rgba(0, 245, 255, 0.35), transparent, rgba(124, 92, 255, 0.25), transparent);
-      animation: rotate 10s linear infinite;
-    }
-
-    .lock-card::after {
-      content: "";
-      position: absolute;
-      inset: 2px;
-      border-radius: 32px;
-      background: linear-gradient(145deg, rgba(8, 14, 30, 0.95), rgba(5, 7, 13, 0.92));
-    }
-
-    @keyframes lockFloat {
-      0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
-      50% { transform: translateY(-18px) rotateX(4deg) rotateY(-5deg); }
-    }
-
-    .lock-body {
-      position: absolute;
-      inset: 0;
-      z-index: 3;
-      display: grid;
-      place-items: center;
-    }
-
-    .lock-icon {
-      width: 170px;
-      height: 210px;
-      position: relative;
-      filter: drop-shadow(0 0 26px rgba(0, 245, 255, 0.35));
-    }
-
-    .shackle {
-      position: absolute;
-      width: 118px;
-      height: 96px;
-      border: 15px solid rgba(0, 245, 255, 0.9);
-      border-bottom: 0;
-      border-radius: 62px 62px 0 0;
-      left: 26px;
-      top: 0;
-      animation: unlock 3.8s ease-in-out infinite;
-    }
-
-    @keyframes unlock {
-      0%, 70%, 100% { transform: translateX(0) rotate(0); }
-      82% { transform: translateX(18px) rotate(8deg); }
-    }
-
-    .lock-box {
-      position: absolute;
-      width: 170px;
-      height: 130px;
-      bottom: 0;
-      border-radius: 28px;
-      background: linear-gradient(145deg, rgba(0, 245, 255, 0.24), rgba(124, 92, 255, 0.22));
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow: inset 0 0 28px rgba(255, 255, 255, 0.08);
-    }
-
-    .keyhole {
-      position: absolute;
-      width: 28px;
-      height: 28px;
-      background: #06101d;
-      border-radius: 50%;
-      left: 50%;
-      top: 40px;
-      transform: translateX(-50%);
-      box-shadow: 0 0 18px rgba(0, 245, 255, 0.5);
-    }
-
-    .keyhole::after {
-      content: "";
-      position: absolute;
-      width: 13px;
-      height: 42px;
-      background: #06101d;
-      top: 21px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 12px;
-    }
-
-    .service-chip {
-      position: absolute;
-      z-index: 5;
-      padding: 12px 14px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
-      color: #eaf3ff;
-      font-weight: 800;
-      box-shadow: 0 12px 34px rgba(0,0,0,.25);
-      animation: chipFloat 4s ease-in-out infinite;
-    }
-
-    .chip1 { top: 76px; left: 0; }
-    .chip2 { bottom: 110px; right: 0; animation-delay: 0.6s; }
-    .chip3 { bottom: 30px; left: 44px; animation-delay: 1.1s; }
-
-    @keyframes chipFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    section {
-      padding: 86px 0;
-    }
-
-    .section-title {
-      font-size: clamp(30px, 4vw, 52px);
-      margin: 0 0 14px;
-      letter-spacing: -1px;
-      text-align: center;
-    }
-
-    .section-sub {
-      color: var(--muted);
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 36px;
-      font-size: 18px;
-      line-height: 1.55;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      padding: 26px;
-      border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(14px);
-      min-height: 250px;
-      position: relative;
-      overflow: hidden;
-      transition: 0.25s ease;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: auto -30% -60% -30%;
-      height: 180px;
-      background: radial-gradient(circle, rgba(0, 245, 255, 0.14), transparent 60%);
-      transition: 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      background: var(--card2);
-      border-color: rgba(0, 245, 255, 0.28);
-    }
-
-    .card:hover::before {
-      transform: translateY(-30px);
-    }
-
-    .card-icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 26px;
-      background: linear-gradient(145deg, rgba(0, 245, 255, 0.15), rgba(124, 92, 255, 0.15));
-      margin-bottom: 18px;
-    }
-
-    .card h3 {
-      font-size: 23px;
-      margin: 0 0 12px;
-    }
-
-    .card p {
-      color: var(--muted);
-      line-height: 1.55;
-      margin: 0;
-    }
-
-    .price-box {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 22px;
-    }
-
-    .price {
-      padding: 24px;
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-    }
-
-    .price strong {
-      display: block;
-      font-size: 34px;
-      margin: 10px 0;
-      color: #fff;
-    }
-
-    .price small {
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 34px;
-    }
-
-    .step {
-      padding: 22px;
-      border-radius: 20px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.09);
-      text-align: center;
-    }
-
-    .step-num {
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 12px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #06101d;
-      font-weight: 900;
-    }
-
-    .step h3 {
-      margin: 0 0 8px;
-      font-size: 17px;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .area {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 26px;
-    }
-
-    .area span {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.1);
-      color: #dfe9ff;
-    }
-
-    .cta-section {
-      padding: 68px 0;
-    }
-
-    .cta-box {
-      padding: 42px;
-      border-radius: 34px;
-      background: linear-gradient(145deg, rgba(0, 245, 255, 0.12), rgba(124, 92, 255, 0.12));
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      text-align: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .cta-box::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: conic-gradient(from 0deg, transparent, rgba(0,245,255,.18), transparent, rgba(124,92,255,.16), transparent);
-      animation: rotate 12s linear infinite;
-    }
-
-    .cta-box > * {
-      position: relative;
-      z-index: 2;
-    }
-
-    .cta-box h2 {
-      font-size: clamp(30px, 4vw, 54px);
-      margin: 0 0 16px;
-    }
-
-    .cta-box p {
-      color: var(--muted);
-      font-size: 18px;
-      margin: 0 auto 24px;
-      max-width: 680px;
-      line-height: 1.55;
-    }
-
-    footer {
-      padding: 34px 0;
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,.08);
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: 0.8s ease;
-    }
-
-    .reveal.show {
-      opacity: 1;
-      transform: none;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(26px); }
-      to { opacity: 1; transform: none; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .lock-scene {
-        height: 420px;
-      }
-
-      .cards,
-      .price-box,
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .phone-btn {
-        padding: 10px 13px;
-        font-size: 14px;
-      }
-
-      .hero {
-        padding-top: 42px;
-      }
-
-      .service-chip {
-        font-size: 13px;
-      }
-
-      .chip1 { left: 8px; }
-      .chip2 { right: 8px; }
-    }
-
-    @media (max-width: 520px) {
-      .wrap {
-        width: min(100% - 22px, 1120px);
-      }
-
-      .nav {
-        height: 66px;
-      }
-
-      .brand strong {
-        font-size: 14px;
-      }
-
-      .brand-icon {
-        width: 38px;
-        height: 38px;
-      }
-
-      h1 {
-        letter-spacing: -1.7px;
-      }
-
-      .hero-actions .btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .lock-scene {
-        height: 360px;
-      }
-
-      .orbital {
-        width: 310px;
-        height: 310px;
-      }
-
-      .lock-card {
-        width: 260px;
-      }
-
-      .lock-icon {
-        transform: scale(0.78);
-      }
-
-      .chip3 {
-        display: none;
-      }
-
-      section {
-        padding: 58px 0;
-      }
-
-      .cta-box {
-        padding: 28px 18px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div class="noise"></div>
-  <div class="glow"></div>
+  <div class="bg-glow"></div>
+  <div class="particles" id="particles"></div>
 
-  <header>
-    <div class="wrap nav">
-      <a href="#" class="brand">
-        <div class="brand-icon">🔐</div>
-        <strong>MS Notdienst</strong>
-      </a>
-
-      <nav class="nav-links">
-        <a href="#services">Leistungen</a>
-        <a href="#preise">Preise</a>
-        <a href="#ablauf">Ablauf</a>
-        <a href="#gebiet">Einsatzgebiet</a>
-      </nav>
-
-      <a class="phone-btn" href="tel:+491234567890">Jetzt anrufen</a>
+  <header class="header">
+    <div class="logo">
+      <span>MS</span>
+      <small>NOTDIENST</small>
     </div>
+
+    <nav>
+      <a href="#services">Leistungen</a>
+      <a href="#prices">Preise</a>
+      <a href="#area">Gebiet</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <a class="call-top" href="tel:+4915112345678">0151 12345678</a>
   </header>
 
   <main>
     <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="badge"><span></span> 24h Notdienst in Pfarrkirchen & Umgebung</div>
+      <div class="hero-text">
+        <p class="eyebrow">24H SCHNELL · SERIÖS · FAIR</p>
 
-          <h1>
-            Schnelle Hilfe,<br />
-            wenn die Tür<br />
-            <span class="gradient-text">verschlossen ist.</span>
-          </h1>
+        <h1>
+          Schlüsselnotdienst<br />
+          Pfarrkirchen & Umgebung
+        </h1>
 
-          <p>
-            Türöffnung, Schlüsselnotdienst und Autoöffnung in Pfarrkirchen.
-            Seriös, transparent und mit klaren Preisen vor dem Einsatz.
-          </p>
+        <p class="subtitle">
+          Türöffnung, Autoöffnung und Schlosswechsel.
+          Schnelle Hilfe vor Ort – transparent und zuverlässig.
+        </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="tel:+491234567890">📞 Jetzt anrufen</a>
-            <a class="btn btn-secondary" href="https://wa.me/491234567890">💬 WhatsApp schreiben</a>
-            <a class="btn btn-secondary" href="#preise">Preise ansehen</a>
-          </div>
-
-          <div class="hero-note">
-            <div>✓ Schnelle Anfahrt</div>
-            <div>✓ Faire Preise</div>
-            <div>✓ Pfarrkirchen + Umgebung</div>
-          </div>
+        <div class="hero-buttons">
+          <a class="btn primary" href="tel:+4915112345678">Jetzt anrufen</a>
+          <a class="btn whatsapp" href="https://wa.me/4915112345678">WhatsApp</a>
         </div>
 
+        <div class="trust-row">
+          <div>24/7 erreichbar</div>
+          <div>Schnelle Anfahrt</div>
+          <div>Faire Preise</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
         <div class="lock-scene">
-          <div class="orbital"></div>
-
-          <div class="service-chip chip1">Türöffnung</div>
-          <div class="service-chip chip2">Autoöffnung</div>
-          <div class="service-chip chip3">Schlosswechsel</div>
-
-          <div class="lock-card" id="lockCard">
+          <div class="lock">
+            <div class="lock-shackle"></div>
             <div class="lock-body">
-              <div class="lock-icon">
-                <div class="shackle"></div>
-                <div class="lock-box">
-                  <div class="keyhole"></div>
-                </div>
-              </div>
+              <div class="keyhole"></div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="wrap">
-        <h2 class="section-title reveal">Unsere Leistungen</h2>
-        <p class="section-sub reveal">
-          Der Fokus liegt auf schneller Hilfe im Notfall. Weitere lokale Services können später einfach ergänzt werden.
-        </p>
-
-        <div class="cards">
-          <article class="card reveal">
-            <div class="card-icon">🔐</div>
-            <h3>Türöffnung</h3>
-            <p>Zugefallene Tür, verlorener Schlüssel oder defektes Schloss. Hilfe vor Ort in Pfarrkirchen und Umgebung.</p>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon">🚗</div>
-            <h3>Autoöffnung</h3>
-            <p>Der Schlüssel liegt im Fahrzeug? Wir helfen bei verschlossenen Fahrzeugen, soweit eine beschädigungsarme Öffnung möglich ist.</p>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon">🔑</div>
-            <h3>Schlosswechsel</h3>
-            <p>Wenn ein Zylinder defekt ist oder ein Schlüssel verloren wurde, kann ein Austausch sinnvoll sein.</p>
-          </article>
+          <div class="key"></div>
+          <div class="energy-ring"></div>
         </div>
       </div>
     </section>
 
-    <section id="preise">
-      <div class="wrap">
-        <h2 class="section-title reveal">Transparente Preise</h2>
-        <p class="section-sub reveal">
-          Der endgültige Preis hängt von Uhrzeit, Entfernung und Aufwand ab. Die Kosten werden immer vor Beginn erklärt.
-        </p>
+    <section id="services" class="section">
+      <p class="eyebrow center">UNSERE LEISTUNGEN</p>
+      <h2>Wir helfen schnell und zuverlässig</h2>
 
-        <div class="price-box">
-          <div class="price reveal">
-            <span>Türöffnung tagsüber</span>
-            <strong>ab 79 €</strong>
-            <small>Beispielpreis für eine einfache zugefallene Tür innerhalb des Einsatzgebiets.</small>
-          </div>
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🚪</div>
+          <h3>Türöffnung</h3>
+          <p>Zugefallene Tür oder Schlüssel verloren? Wir öffnen schnell und beschädigungsarm.</p>
+        </div>
 
-          <div class="price reveal">
-            <span>Abend / Wochenende</span>
-            <strong>auf Anfrage</strong>
-            <small>Bei Nacht, Wochenende oder Feiertagen können Zuschläge entstehen.</small>
-          </div>
+        <div class="card">
+          <div class="icon">🚗</div>
+          <h3>Autoöffnung</h3>
+          <p>Schlüssel im Auto eingeschlossen? Wir helfen Ihnen schnell weiter.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔐</div>
+          <h3>Schlosswechsel</h3>
+          <p>Defektes Schloss oder Sicherheitswechsel? Wir tauschen Zylinder fachgerecht aus.</p>
         </div>
       </div>
     </section>
 
-    <section id="ablauf">
-      <div class="wrap">
-        <h2 class="section-title reveal">So läuft es ab</h2>
-        <p class="section-sub reveal">Einfach, schnell und sicher.</p>
+    <section id="prices" class="section dark">
+      <p class="eyebrow center">TRANSPARENTE PREISE</p>
+      <h2>Klare Kosten vor dem Einsatz</h2>
 
-        <div class="steps">
-          <div class="step reveal">
-            <div class="step-num">1</div>
-            <h3>Anrufen</h3>
-            <p>Sie erklären kurz die Situation und nennen die Adresse.</p>
-          </div>
+      <div class="price-box">
+        <div>
+          <span>Türöffnung tagsüber</span>
+          <strong>ab 79 €</strong>
+          <p>Bei einfacher zugefallener Tür im Nahbereich.</p>
+        </div>
 
-          <div class="step reveal">
-            <div class="step-num">2</div>
-            <h3>Preis klären</h3>
-            <p>Sie erhalten vorab eine transparente Einschätzung.</p>
-          </div>
-
-          <div class="step reveal">
-            <div class="step-num">3</div>
-            <h3>Anfahrt</h3>
-            <p>Wir fahren zu Ihnen nach Pfarrkirchen oder Umgebung.</p>
-          </div>
-
-          <div class="step reveal">
-            <div class="step-num">4</div>
-            <h3>Öffnung</h3>
-            <p>Nach Berechtigungsprüfung erfolgt die Türöffnung.</p>
-          </div>
+        <div>
+          <span>Abend / Wochenende</span>
+          <strong>auf Anfrage</strong>
+          <p>Der genaue Preis wird vor Beginn genannt.</p>
         </div>
       </div>
     </section>
 
-    <section id="gebiet">
-      <div class="wrap">
-        <h2 class="section-title reveal">Einsatzgebiet</h2>
-        <p class="section-sub reveal">
-          Pfarrkirchen und Umgebung. Später kann das Gebiet flexibel erweitert werden.
-        </p>
+    <section id="area" class="section">
+      <p class="eyebrow center">EINSATZGEBIET</p>
+      <h2>Pfarrkirchen + Umgebung</h2>
 
-        <div class="area reveal">
+      <div class="area-box">
+        <div class="map-circle">
           <span>Pfarrkirchen</span>
-          <span>Eggenfelden</span>
-          <span>Arnstorf</span>
-          <span>Simbach</span>
-          <span>Bad Birnbach</span>
-          <span>Passau</span>
-          <span>Umkreis ca. 30–50 km</span>
         </div>
+
+        <ul>
+          <li>Pfarrkirchen</li>
+          <li>Eggenfelden</li>
+          <li>Bad Birnbach</li>
+          <li>Arnstorf</li>
+          <li>Simbach am Inn</li>
+          <li>Umkreis ca. 30–50 km</li>
+        </ul>
       </div>
     </section>
 
-    <section class="cta-section">
-      <div class="wrap">
-        <div class="cta-box reveal">
-          <h2>Ausgesperrt?</h2>
-          <p>
-            Rufen Sie an oder schreiben Sie per WhatsApp. Wir prüfen die Situation und nennen Ihnen die nächsten Schritte.
-          </p>
-          <div class="hero-actions" style="justify-content:center;">
-            <a class="btn btn-primary" href="tel:+491234567890">📞 Jetzt anrufen</a>
-            <a class="btn btn-secondary" href="https://wa.me/491234567890">💬 WhatsApp</a>
-          </div>
-        </div>
+    <section id="faq" class="section dark">
+      <p class="eyebrow center">FAQ</p>
+      <h2>Häufige Fragen</h2>
+
+      <div class="faq">
+        <button>Wie schnell sind Sie vor Ort?</button>
+        <button>Was kostet eine Türöffnung?</button>
+        <button>Öffnen Sie jede Tür?</button>
+        <button>Kann ich per Karte bezahlen?</button>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap footer-row">
-      <div>© 2026 MS Notdienst. Alle Rechte vorbehalten.</div>
-      <div>Impressum · Datenschutz · Pfarrkirchen</div>
-    </div>
-  </footer>
+  <div class="mobile-bar">
+    <a href="tel:+4915112345678">Jetzt anrufen</a>
+    <a href="https://wa.me/4915112345678">WhatsApp</a>
+  </div>
 
-  <script>
-    const reveals = document.querySelectorAll(".reveal");
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    }, { threshold: 0.15 });
-
-    reveals.forEach(el => observer.observe(el));
-
-    const lockCard = document.getElementById("lockCard");
-
-    document.addEventListener("mousemove", (e) => {
-      if (window.innerWidth < 900) return;
-
-      const x = (e.clientX / window.innerWidth - 0.5) * 18;
-      const y = (e.clientY / window.innerHeight - 0.5) * -18;
-
-      lockCard.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-    });
-
-    document.addEventListener("mouseleave", () => {
-      lockCard.style.transform = "";
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
