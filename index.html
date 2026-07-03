@@ -4,170 +4,154 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Schlüsselnotdienst Pfarrkirchen | Türöffnung & Autoöffnung</title>
-  <meta name="description" content="Schlüsselnotdienst in Pfarrkirchen und Umgebung. Türöffnung, Autoöffnung, Schlosswechsel. Schnell, seriös und transparent." />
+  <title>MS Notdienst | Schlüsselnotdienst Pfarrkirchen</title>
+  <meta name="description" content="Schlüsselnotdienst in Pfarrkirchen und Umgebung. Türöffnung, Autoöffnung und Schlosswechsel. Schnell, seriös und transparent." />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div class="bg-glow"></div>
-  <div class="particles" id="particles"></div>
+  <div class="page-bg"></div>
+  <div class="noise"></div>
+  <canvas id="particles"></canvas>
 
-  <header class="header">
-    <div class="logo">
-      <span>MS</span>
-      <small>NOTDIENST</small>
-    </div>
+  <header class="site-header">
+    <a class="brand" href="#">
+      <span class="brand-mark">MS</span>
+      <span class="brand-text">NOTDIENST</span>
+    </a>
 
-    <nav>
-      <a href="#services">Leistungen</a>
-      <a href="#prices">Preise</a>
-      <a href="#area">Gebiet</a>
-      <a href="#faq">FAQ</a>
+    <nav class="nav">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#preise">Preise</a>
+      <a href="#gebiet">Gebiet</a>
+      <a href="#kontakt">Kontakt</a>
     </nav>
 
-    <a class="call-top" href="tel:+4915112345678">0151 12345678</a>
+    <a class="header-call" href="tel:+4915112345678">
+      Jetzt anrufen
+    </a>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-text">
-        <p class="eyebrow">24H SCHNELL · SERIÖS · FAIR</p>
+      <div class="hero-content">
+        <p class="hero-kicker">
+          24H SCHNELL · SERIÖS · FAIR
+        </p>
 
         <h1>
           Schlüsselnotdienst<br />
-          Pfarrkirchen & Umgebung
+          Pfarrkirchen &<br />
+          Umgebung
         </h1>
 
-        <p class="subtitle">
+        <p class="hero-text">
           Türöffnung, Autoöffnung und Schlosswechsel.
-          Schnelle Hilfe vor Ort – transparent und zuverlässig.
+          Schnelle Hilfe vor Ort – transparent, zuverlässig und modern.
         </p>
 
-        <div class="hero-buttons">
-          <a class="btn primary" href="tel:+4915112345678">Jetzt anrufen</a>
-          <a class="btn whatsapp" href="https://wa.me/4915112345678">WhatsApp</a>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+4915112345678">
+            📞 Jetzt anrufen
+          </a>
+
+          <a class="btn btn-ghost" href="https://wa.me/4915112345678">
+            💬 WhatsApp
+          </a>
         </div>
 
-        <div class="trust-row">
-          <div>24/7 erreichbar</div>
-          <div>Schnelle Anfahrt</div>
-          <div>Faire Preise</div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="car-shadow"></div>
-
-        <div class="hero-orbit orbit-one"></div>
-        <div class="hero-orbit orbit-two"></div>
-
-        <div class="lock-scene">
-          <div class="lock-light"></div>
-
-          <div class="lock">
-            <div class="lock-shackle"></div>
-
-            <div class="lock-body">
-              <div class="lock-shine"></div>
-              <div class="keyhole"></div>
-            </div>
+        <div class="hero-badges">
+          <div>
+            <strong>24/7</strong>
+            <span>erreichbar</span>
           </div>
 
-          <div class="key">
-            <div class="key-head"></div>
-            <div class="key-teeth"></div>
+          <div>
+            <strong>30–50 km</strong>
+            <span>Einsatzgebiet</span>
           </div>
 
-          <div class="energy-ring"></div>
-        </div>
-
-        <div class="floating-label label-door">Türöffnung</div>
-        <div class="floating-label label-car">Autoöffnung</div>
-        <div class="floating-label label-24">24h Notdienst</div>
-      </div>
-    </section>
-
-    <section id="services" class="section">
-      <p class="eyebrow center">UNSERE LEISTUNGEN</p>
-      <h2>Wir helfen schnell und zuverlässig</h2>
-
-      <div class="cards">
-        <div class="card">
-          <div class="icon">🚪</div>
-          <h3>Türöffnung</h3>
-          <p>Zugefallene Tür oder Schlüssel verloren? Wir öffnen schnell und beschädigungsarm.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🚗</div>
-          <h3>Autoöffnung</h3>
-          <p>Schlüssel im Auto eingeschlossen? Wir helfen Ihnen schnell weiter.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🔐</div>
-          <h3>Schlosswechsel</h3>
-          <p>Defektes Schloss oder Sicherheitswechsel? Wir tauschen Zylinder fachgerecht aus.</p>
+          <div>
+            <strong>Fair</strong>
+            <span>klare Preise</span>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section id="prices" class="section dark">
-      <p class="eyebrow center">TRANSPARENTE PREISE</p>
-      <h2>Klare Kosten vor dem Einsatz</h2>
+      <div class="hero-stage">
+        <div class="car-glow"></div>
 
-      <div class="price-box">
-        <div>
-          <span>Türöffnung tagsüber</span>
-          <strong>ab 79 €</strong>
-          <p>Bei einfacher zugefallener Tür im Nahbereich.</p>
+        <div class="glass-card">
+          <div class="lock-3d">
+            <svg class="lock-svg" viewBox="0 0 420 420" aria-hidden="true">
+              <defs>
+                <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f2fbff"/>
+                  <stop offset="22%" stop-color="#7deaff"/>
+                  <stop offset="55%" stop-color="#1b84ff"/>
+                  <stop offset="100%" stop-color="#0a1830"/>
+                </linearGradient>
+
+                <linearGradient id="darkMetal" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#17233c"/>
+                  <stop offset="50%" stop-color="#09111f"/>
+                  <stop offset="100%" stop-color="#02050c"/>
+                </linearGradient>
+
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="6" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <path class="lock-shackle-svg" d="M135 190 V135 C135 82 168 50 210 50 C252 50 285 82 285 135 V190" />
+              <rect class="lock-body-svg" x="95" y="175" width="230" height="190" rx="34" />
+              <circle class="lock-core-svg" cx="210" cy="260" r="48" />
+              <path class="keyhole-svg" d="M210 232 C195 232 184 243 184 258 C184 269 190 278 199 282 L193 318 H227 L221 282 C230 278 236 269 236 258 C236 243 225 232 210 232 Z" />
+            </svg>
+
+            <svg class="key-svg" viewBox="0 0 360 120" aria-hidden="true">
+              <defs>
+                <linearGradient id="keyMetal" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="35%" stop-color="#bdf7ff"/>
+                  <stop offset="70%" stop-color="#54dfff"/>
+                  <stop offset="100%" stop-color="#0f6fff"/>
+                </linearGradient>
+              </defs>
+
+              <circle class="key-ring-svg" cx="58" cy="60" r="36" />
+              <rect class="key-stem-svg" x="92" y="48" width="210" height="24" rx="12" />
+              <rect class="key-tooth-svg" x="260" y="68" width="20" height="28" rx="3" />
+              <rect class="key-tooth-svg" x="290" y="68" width="18" height="20" rx="3" />
+            </svg>
+
+            <div class="energy-circle"></div>
+            <div class="scan-light"></div>
+          </div>
         </div>
 
-        <div>
-          <span>Abend / Wochenende</span>
-          <strong>auf Anfrage</strong>
-          <p>Der genaue Preis wird vor Beginn genannt.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="area" class="section">
-      <p class="eyebrow center">EINSATZGEBIET</p>
-      <h2>Pfarrkirchen + Umgebung</h2>
-
-      <div class="area-box">
-        <div class="map-circle">
-          <span>Pfarrkirchen</span>
+        <div class="float-card card-one">
+          Türöffnung
         </div>
 
-        <ul>
-          <li>Pfarrkirchen</li>
-          <li>Eggenfelden</li>
-          <li>Bad Birnbach</li>
-          <li>Arnstorf</li>
-          <li>Simbach am Inn</li>
-          <li>Umkreis ca. 30–50 km</li>
-        </ul>
-      </div>
-    </section>
+        <div class="float-card card-two">
+          Autoöffnung
+        </div>
 
-    <section id="faq" class="section dark">
-      <p class="eyebrow center">FAQ</p>
-      <h2>Häufige Fragen</h2>
-
-      <div class="faq">
-        <button>Wie schnell sind Sie vor Ort?</button>
-        <button>Was kostet eine Türöffnung?</button>
-        <button>Öffnen Sie jede Tür?</button>
-        <button>Kann ich per Karte bezahlen?</button>
+        <div class="float-card card-three">
+          24h Notdienst
+        </div>
       </div>
     </section>
   </main>
 
-  <div class="mobile-bar">
-    <a href="tel:+4915112345678">Jetzt anrufen</a>
+  <div class="mobile-action-bar">
+    <a href="tel:+4915112345678">📞 Anrufen</a>
     <a href="https://wa.me/4915112345678">WhatsApp</a>
   </div>
 
