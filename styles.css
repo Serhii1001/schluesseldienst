@@ -684,3 +684,20 @@ h1 {
     height: 260px;
   }
 }
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.faq-answer {
+  padding: 0 20px 18px;
+  margin-top: -4px;
+  color: var(--muted);
+  line-height: 1.5;
+}
